@@ -482,7 +482,7 @@ function setBrand(name) { activeBrand=name; renderBrands(); renderFeed(); }
 // ── CONTENTFUL ────────────────────────────────────────────────────────
 const CF_SPACE  = 'v7m1m909hpus';
 const CF_TOKEN  = '4GX0xOdJYBvcgNTbfTnYmVGvy8LORxpfifKu3Z9qElI';
-const CF_URL    = `https://cdn.contentful.com/spaces/${CF_SPACE}/entries?content_type=post&order=-fields.date&access_token=${CF_TOKEN}`;
+const CF_URL    = `https://cdn.contentful.com/spaces/${CF_SPACE}/entries?content_type=reviewPost&order=-fields.date&access_token=${CF_TOKEN}`;
 
 async function fetchContentfulPosts() {
   try {
