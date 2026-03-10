@@ -13,7 +13,7 @@
     background: #1a1a24; border-bottom: 1px solid #2a2a3a;
     padding: 10px 24px; display: flex; align-items: center; justify-content: space-between;
   }
-  #site-title img { height: 48px; width: auto; display: block; }
+  #site-title img { height: 96px; width: auto; display: block; }
   #top-bar nav a {
     color: #aaa; text-decoration: none; margin-left: 20px;
     font-size: 0.9rem; transition: color .2s; cursor: pointer;
@@ -505,6 +505,8 @@ async function fetchContentfulPosts() {
     if (!data.items || !data.items.length) return;
     const fetched = data.items.map(item => {
       const f = item.fields;
+      console.log('Contentful post fields:', f);
+      console.log('Body field value:', f.body);
       const brand = brands.find(b => b.name === f.brand) || { color: '#a855f7' };
       return {
         id:         item.sys.id,
