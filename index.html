@@ -337,8 +337,11 @@ function checkPassword() {
 
 // ── ARTICLE ────────────────────────────────────────────────────────────
 function openArticle(id) {
+  console.log('openArticle called with id:', id);
+  console.log('All post ids:', posts.map(p => String(p.id)));
   const p = posts.find(x => String(x.id) === String(id));
-  if (!p) return;
+  console.log('Found post:', p);
+  if (!p) { console.warn('No post found for id:', id); return; }
   document.getElementById('article-meta').innerHTML = `
     <span class="brand-badge" style="background:${p.brandColor}22;color:${p.brandColor};border:1px solid ${p.brandColor}55">${p.brand}</span>
     <span class="tag">${p.tag}</span>
