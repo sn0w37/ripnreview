@@ -349,9 +349,9 @@ function openArticle(id) {
 
 // ── BRANDS ────────────────────────────────────────────────────────────
 function renderBrands() {
-  document.getElementById('brand-pills').innerHTML = brands.map(b => `
+  document.getElementById('brand-pills').innerHTML = brands.map((b,i) => `
     <div class="brand-pill ${activeBrand===b.name?'active':''}"
-         onclick="setBrand('${b.name}')"
+         onclick="setBrandByIndex(${i})"
          style="${activeBrand===b.name?`border-color:${b.color};background:${b.color}22`:''}">
       <span class="dot" style="background:${b.color}"></span>${b.name}
     </div>`).join('');
@@ -380,7 +380,7 @@ function renderFeed() {
       </div>
       <div class="card-footer">
         <div class="rating">${renderStars(p.rating)}</div>
-        <button class="read-more" onclick="openArticle('${p.id}')">Read more →</button>
+        <button class="read-more" onclick="openArticle('${p.id.replace(/'/g, "\\'")}')">Read more →</button>
       </div>
     </div>`).join('');
 }
@@ -451,6 +451,7 @@ function setFilter(f,el) {
   document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active'); renderFeed();
 }
+function setBrandByIndex(i) { setBrand(brands[i].name); }
 function setBrand(name) { activeBrand=name; renderBrands(); renderFeed(); }
 
 // ── CONTENTFUL ────────────────────────────────────────────────────────
