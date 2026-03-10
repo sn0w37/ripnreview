@@ -217,7 +217,6 @@
   <div class="admin-card">
     <h2>📝 New Post</h2>
     <div id="success-msg" class="success-msg">✅ Post published successfully!</div>
-
     <div class="form-row">
       <div class="form-group">
         <label>Post Type</label>
@@ -231,12 +230,10 @@
         <input id="a-tag" type="text" placeholder="e.g. Set Review, Box Opening">
       </div>
     </div>
-
     <div class="form-group">
       <label>Title</label>
       <input id="a-title" type="text" placeholder="Post title...">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label>Brand / Game</label>
@@ -253,19 +250,15 @@
         </div>
       </div>
     </div>
-
     <div class="form-group">
       <label>Excerpt (short summary shown on feed)</label>
       <input id="a-excerpt" type="text" placeholder="One or two sentence summary...">
     </div>
-
     <div class="form-group">
       <label>Full Article Body</label>
       <textarea id="a-body" placeholder="Write your full review or opening report here..."></textarea>
     </div>
-
     <button class="submit-btn" onclick="submitPost()">Publish Post</button>
-
     <div class="admin-posts">
       <h3>Manage Posts</h3>
       <div id="admin-post-list"></div>
@@ -276,30 +269,30 @@
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────
 const brands = [
-  { name: "All",                color: "#a855f7" },
-  { name: "Pokémon",            color: "#ffcc00" },
+  { name: "All",                  color: "#a855f7" },
+  { name: "Pokémon",              color: "#ffcc00" },
   { name: "Magic: The Gathering", color: "#e05c2a" },
-  { name: "One Piece",          color: "#e84040" },
-  { name: "Lorcana",            color: "#4a90d9" },
-  { name: "Yu-Gi-Oh!",          color: "#9b59b6" },
-  { name: "Flesh & Blood",      color: "#27ae60" },
-  { name: "Digimon",            color: "#2980b9" },
+  { name: "One Piece",            color: "#e84040" },
+  { name: "Lorcana",              color: "#4a90d9" },
+  { name: "Yu-Gi-Oh!",            color: "#9b59b6" },
+  { name: "Flesh & Blood",        color: "#27ae60" },
+  { name: "Digimon",              color: "#2980b9" },
+  { name: "Wonders of the First", color: "#2ecc71" },
 ];
 
 let posts = [
-  { id: 1, type:"review",  brand:"Pokémon",            brandColor:"#ffcc00", title:"Scarlet & Violet — Stellar Crown: Is the Pull Rate Worth It?",        excerpt:"Stellar Crown brings some of the most stunning artwork the Pokémon TCG has seen in years, but with pack prices climbing, we ask the hard question — does the value justify the price tag?", body:"Stellar Crown is a set that genuinely impressed us from the moment we cracked the first pack. The artwork across the board feels like a step up, with several illustrator rare cards that could genuinely be framed on a wall.\n\nPull Rates\nAcross 10 booster boxes, we tracked every hit. Secret rares appeared roughly once every 3–4 packs, which is notably generous compared to previous sets. The illustrator rares were harder to come by — about one per two boxes — but the consistency of ex pulls kept every pack feel exciting.\n\nValue\nAt the current market rate, a booster box sits around $140–160. Given the pull rates we experienced, you're likely to recoup a solid chunk of that value if you're pulling to sell. Collectors will find even more reason to dive in.\n\nVerdict\nStellar Crown is one of the strongest sets in recent Scarlet & Violet memory. If you're going to buy into one set this quarter, this is the one.", rating:4, date:"Mar 8, 2026", tag:"Set Review" },
-  { id: 2, type:"opening", brand:"Magic: The Gathering", brandColor:"#e05c2a", title:"Opening 6 Booster Boxes of Foundations — Did We Hit Big?",           excerpt:"We cracked open six booster boxes of Magic: The Gathering Foundations to see whether the reprint set delivers on its promise of value.", body:"Foundations was billed as a set for new and returning players, but does it deliver value for the seasoned opener? We cracked six boxes to find out.\n\nWhat We Pulled\nAcross six boxes we landed 4 mythic rares in the special foil treatment, 11 standard mythics, and a handful of borderless rares that are already climbing in price. No serialized cards unfortunately, but the foil quality on this set is exceptional.\n\nThe Verdict\nFoundations is a solid reprint set with better-than-average pull rates for competitive staples. Recommended for players and collectors alike.", rating:3, date:"Mar 7, 2026", tag:"Box Opening" },
-  { id: 3, type:"review",  brand:"Lorcana",             brandColor:"#4a90d9", title:"Lorcana Azurite Sea — A Set That Finally Hits Its Stride",            excerpt:"After a shaky launch era, Lorcana's Azurite Sea expansion feels like the game stepping into its own.", body:"Lorcana has had a rocky road since launch — distribution issues, print quality complaints, and a meta that felt lopsided. Azurite Sea feels like Disney and Ravensburger finally getting it right.\n\nCard Design\nThe lore integration is tighter than ever. Characters feel distinct and flavorful, and the new location cards add a strategic depth that was missing from earlier sets.\n\nPull Rates\nEnchanted cards (Lorcana's equivalent of secret rares) appeared at a noticeably higher rate than previous sets. We hit 3 enchanteds across 4 boxes, which is excellent.\n\nVerdict\nAzurite Sea is the best Lorcana set to date. If you gave up on the game early, this is your reason to come back.", rating:5, date:"Mar 6, 2026", tag:"Set Review" },
+  { id: 1, type:"review",  brand:"Pokémon", brandColor:"#ffcc00", title:"Scarlet & Violet — Stellar Crown: Is the Pull Rate Worth It?", excerpt:"Stellar Crown brings some of the most stunning artwork the Pokémon TCG has seen in years, but with pack prices climbing, we ask the hard question — does the value justify the price tag?", body:"Stellar Crown is a set that genuinely impressed us from the moment we cracked the first pack.\n\nPull Rates\nAcross 10 booster boxes, we tracked every hit. Secret rares appeared roughly once every 3–4 packs, which is notably generous compared to previous sets.\n\nVerdict\nStellar Crown is one of the strongest sets in recent Scarlet & Violet memory.", rating:4, date:"Mar 8, 2026", tag:"Set Review" },
+  { id: 2, type:"opening", brand:"Magic: The Gathering", brandColor:"#e05c2a", title:"Opening 6 Booster Boxes of Foundations — Did We Hit Big?", excerpt:"We cracked open six booster boxes of Magic: The Gathering Foundations to see whether the reprint set delivers on its promise of value.", body:"Foundations was billed as a set for new and returning players, but does it deliver value for the seasoned opener? We cracked six boxes to find out.\n\nThe Verdict\nFoundations is a solid reprint set with better-than-average pull rates for competitive staples.", rating:3, date:"Mar 7, 2026", tag:"Box Opening" },
+  { id: 3, type:"review",  brand:"Lorcana", brandColor:"#4a90d9", title:"Lorcana Azurite Sea — A Set That Finally Hits Its Stride", excerpt:"After a shaky launch era, Lorcana's Azurite Sea expansion feels like the game stepping into its own.", body:"Lorcana has had a rocky road since launch. Azurite Sea feels like Disney and Ravensburger finally getting it right.\n\nVerdict\nAzurite Sea is the best Lorcana set to date. If you gave up on the game early, this is your reason to come back.", rating:5, date:"Mar 6, 2026", tag:"Set Review" },
 ];
 
 let adminRating = 0;
 let activeFilter = "all";
 let activeBrand  = "All";
 let currentView  = "home";
-
-// ── VIEWS ──────────────────────────────────────────────────────────────
 let adminUnlocked = false;
 
+// ── VIEWS ─────────────────────────────────────────────────────────────
 function showView(view) {
   if (view === 'admin' && !adminUnlocked) {
     document.getElementById('home-view').style.display    = 'none';
@@ -335,13 +328,10 @@ function checkPassword() {
   }
 }
 
-// ── ARTICLE ────────────────────────────────────────────────────────────
+// ── ARTICLE ───────────────────────────────────────────────────────────
 function openArticle(id) {
-  console.log('openArticle called with id:', id);
-  console.log('All post ids:', posts.map(p => String(p.id)));
   const p = posts.find(x => String(x.id) === String(id));
-  console.log('Found post:', p);
-  if (!p) { console.warn('No post found for id:', id); return; }
+  if (!p) return;
   document.getElementById('article-meta').innerHTML = `
     <span class="brand-badge" style="background:${p.brandColor}22;color:${p.brandColor};border:1px solid ${p.brandColor}55">${p.brand}</span>
     <span class="tag">${p.tag}</span>
@@ -351,7 +341,7 @@ function openArticle(id) {
   document.getElementById('article-body').textContent  = p.body || p.excerpt;
   document.getElementById('article-rating').innerHTML  = renderStars(p.rating);
   showView('article');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 // ── BRANDS ────────────────────────────────────────────────────────────
@@ -362,12 +352,8 @@ function renderBrands() {
          style="${activeBrand===b.name?`border-color:${b.color};background:${b.color}22`:''}">
       <span class="dot" style="background:${b.color}"></span>${b.name}
     </div>`).join('');
-
-  // Populate admin brand select
   const sel = document.getElementById('a-brand');
-  if (sel) {
-    sel.innerHTML = brands.filter(b=>b.name!=='All').map(b=>`<option value="${b.name}">${b.name}</option>`).join('');
-  }
+  if (sel) sel.innerHTML = brands.filter(b=>b.name!=='All').map(b=>`<option value="${b.name}">${b.name}</option>`).join('');
 }
 
 // ── FEED ──────────────────────────────────────────────────────────────
@@ -377,10 +363,7 @@ function renderFeed() {
     (activeFilter==='all' || p.type===activeFilter) &&
     (activeBrand==='All'  || p.brand===activeBrand)
   );
-  if (!filtered.length) {
-    feed.innerHTML = `<div style="text-align:center;padding:48px;color:#555">No posts found.</div>`;
-    return;
-  }
+  if (!filtered.length) { feed.innerHTML = `<div style="text-align:center;padding:48px;color:#555">No posts found.</div>`; return; }
   feed.innerHTML = filtered.map(p => `
     <div class="post-card">
       <div class="card-header">
@@ -406,10 +389,8 @@ function renderSidebar() {
       <div class="recent-dot" style="background:${p.brandColor}"></div>
       <div><p>${p.title}</p><span>${p.date} · ${p.brand}</span></div>
     </div>`).join('');
-
   const top = [...posts].sort((a,b)=>b.rating-a.rating).slice(0,4);
-  const colors = ["#f59e0b","#9ca3af","#cd7f32","#a855f7"];
-  document.getElementById('top-rated').innerHTML = top.map((t,i)=>`
+  document.getElementById('top-rated').innerHTML = top.map(t=>`
     <div class="score-row">
       <span class="label">${t.brand} — ${t.title.split('—')[0].trim()}</span>
       <span class="score-badge" style="background:${t.brandColor}22;color:${t.brandColor};border:1px solid ${t.brandColor}44">${'★'.repeat(t.rating)}</span>
@@ -430,32 +411,20 @@ function submitPost() {
   const tag     = document.getElementById('a-tag').value.trim() || (type==='review'?'Set Review':'Box Opening');
   const brandName = document.getElementById('a-brand').value;
   const brand   = brands.find(b=>b.name===brandName);
-
   if (!title || !excerpt || !body) { alert('Please fill in title, excerpt, and body.'); return; }
   if (!adminRating) { alert('Please select a star rating.'); return; }
-
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-
-  posts.unshift({
-    id: Date.now(), type, brand: brand.name, brandColor: brand.color,
-    title, excerpt, body, rating: adminRating, date: dateStr, tag
-  });
-
-  // Reset form
+  const dateStr = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  posts.unshift({ id: Date.now(), type, brand: brand.name, brandColor: brand.color, title, excerpt, body, rating: adminRating, date: dateStr, tag });
   ['a-title','a-excerpt','a-body','a-tag'].forEach(id => document.getElementById(id).value='');
   setRating(0);
   document.getElementById('success-msg').style.display = 'block';
   setTimeout(()=>document.getElementById('success-msg').style.display='none', 3000);
-
-  renderFeed();
-  renderSidebar();
-  renderAdminList();
+  renderFeed(); renderSidebar(); renderAdminList();
 }
 
 function deletePost(id) {
   if (!confirm('Delete this post?')) return;
-  posts = posts.filter(p=>p.id!==id);
+  posts = posts.filter(p=>String(p.id)!==String(id));
   renderFeed(); renderSidebar(); renderAdminList();
 }
 
@@ -466,7 +435,7 @@ function renderAdminList() {
     <div class="admin-post-item">
       <p>${p.title}</p>
       <span>${p.date}</span>
-      <button class="delete-btn" onclick="deletePost(${p.id})">Delete</button>
+      <button class="delete-btn" onclick="deletePost('${p.id}')">Delete</button>
     </div>`).join('');
 }
 
@@ -481,25 +450,26 @@ function setFilter(f,el) {
 }
 function setBrand(name) { activeBrand=name; renderBrands(); renderFeed(); }
 
-// ── CONTENTFUL RICH TEXT RENDERER ────────────────────────────────────
+// ── CONTENTFUL ────────────────────────────────────────────────────────
 function renderRichText(doc) {
   if (!doc || !doc.content) return '';
   return doc.content.map(node => {
     if (node.nodeType === 'paragraph')
-      return node.content.map(n => n.value || '').join('') + '\n\n';
+      return node.content.map(n=>n.value||'').join('') + '\n\n';
     if (node.nodeType === 'heading-1') return '# ' + node.content.map(n=>n.value||'').join('') + '\n\n';
     if (node.nodeType === 'heading-2') return '## ' + node.content.map(n=>n.value||'').join('') + '\n\n';
     if (node.nodeType === 'heading-3') return '### ' + node.content.map(n=>n.value||'').join('') + '\n\n';
     if (node.nodeType === 'unordered-list')
-      return node.content.map(li => '• ' + li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n') + '\n\n';
+      return node.content.map(li=>'• '+li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n')+'\n\n';
     if (node.nodeType === 'ordered-list')
-      return node.content.map((li,i) => `${i+1}. ` + li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n') + '\n\n';
+      return node.content.map((li,i)=>`${i+1}. `+li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n')+'\n\n';
     return '';
   }).join('').trim();
 }
-const CF_SPACE  = 'v7m1m909hpus';
-const CF_TOKEN  = '4GX0xOdJYBvcgNTbfTnYmVGvy8LORxpfifKu3Z9qElI';
-const CF_URL    = `https://cdn.contentful.com/spaces/${CF_SPACE}/entries?content_type=reviewPost&order=-fields.date&access_token=${CF_TOKEN}`;
+
+const CF_SPACE = 'v7m1m909hpus';
+const CF_TOKEN = '4GX0xOdJYBvcgNTbfTnYmVGvy8LORxpfifKu3Z9qElI';
+const CF_URL   = `https://cdn.contentful.com/spaces/${CF_SPACE}/entries?content_type=reviewPost&order=-fields.date&access_token=${CF_TOKEN}`;
 
 async function fetchContentfulPosts() {
   try {
@@ -508,25 +478,21 @@ async function fetchContentfulPosts() {
     if (!data.items || !data.items.length) return;
     const fetched = data.items.map(item => {
       const f = item.fields;
-      console.log('Contentful post fields:', f);
-      console.log('Body field value:', f.body);
       const brand = brands.find(b => b.name === f.brand) || { color: '#a855f7' };
+      const brandColor = (f.brandColor && f.brandColor.startsWith('#')) ? f.brandColor : brand.color;
       return {
         id:         item.sys.id,
-        type:       f.type       || 'review',
-        brand:      f.brand      || 'Unknown',
-        brandColor: f.brandColor || brand.color,
-        title:      f.title      || '',
-        excerpt:    f.excerpt    || '',
+        type:       f.type    || 'review',
+        brand:      f.brand   || 'Unknown',
+        brandColor,
+        title:      f.title   || '',
+        excerpt:    f.excerpt || '',
         body:       typeof f.body === 'object' ? renderRichText(f.body) : (f.body || ''),
-        brandColor: (f.brandColor && f.brandColor.startsWith('#')) ? f.brandColor : (brand.color || '#a855f7'),
-        rating:     f.rating     || 0,
+        rating:     f.rating  || 0,
         date:       f.date ? new Date(f.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '',
-        tag:        f.tag        || 'Post',
+        tag:        f.tag     || 'Post',
       };
     });
-    // Merge: Contentful posts first, then keep any local-only posts
-    const cfIds = new Set(fetched.map(p => p.id));
     const localOnly = posts.filter(p => typeof p.id === 'number');
     posts = [...fetched, ...localOnly];
     renderFeed(); renderSidebar(); renderAdminList();
