@@ -519,6 +519,7 @@ async function fetchContentfulPosts() {
         title:      f.title      || '',
         excerpt:    f.excerpt    || '',
         body:       typeof f.body === 'object' ? renderRichText(f.body) : (f.body || ''),
+        brandColor: (f.brandColor && f.brandColor.startsWith('#')) ? f.brandColor : (brand.color || '#a855f7'),
         rating:     f.rating     || 0,
         date:       f.date ? new Date(f.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '',
         tag:        f.tag        || 'Post',
