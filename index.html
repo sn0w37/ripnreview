@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>SNAP Arena | Competitive Tournaments</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #38bdf8;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #334155;
+    }
+
+    .button {
+      background: #38bdf8;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background: #0ea5e9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+
+    th {
+      color: #38bdf8;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>SNAP Arena</h1>
+  <nav>
+    <a href="#">Tournaments</a>
+    <a href="#">My Events</a>
+    <a href="#">Organizer Dashboard</a>
+    <a href="#">Login</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="section-title">🔥 Active Tournaments</div>
+
+  <div class="card">
+    <h2>Weekly SNAP Open #12</h2>
+    <p>Format: Swiss (5 Rounds) → Top 8</p>
+    <p>Players: 64 / 128</p>
+    <button class="button">Register</button>
+  </div>
+
+  <div class="card">
+    <h2>Infinity Conquest Championship</h2>
+    <p>Format: BO3 | Open Decklists</p>
+    <p>Players: 32 / 32</p>
+    <button class="button">View Bracket</button>
+  </div>
+
+  <div class="section-title">📊 Standings (Demo)</div>
+
+  <div class="card">
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Record</th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>SnapMaster</td>
+        <td>4-0</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>GalactusGod</td>
+        <td>3-1</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>WaveRunner</td>
+        <td>3-1</td>
+        <td>9</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-title">🛠 Organizer Dashboard (Demo)</div>
+
+  <div class="card">
+    <h2>Create Tournament</h2>
+    <input type="text" placeholder="Tournament Name" style="padding:8px;width:100%;margin-bottom:10px;">
+    <select style="padding:8px;width:100%;margin-bottom:10px;">
+      <option>Swiss → Top Cut</option>
+      <option>Single Elimination</option>
+      <option>Conquest Format</option>
+    </select>
+    <button class="button">Create</button>
+  </div>
+
+</div>
+
+</body>
+</html>
