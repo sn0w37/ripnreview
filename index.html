@@ -341,9 +341,13 @@ function openArticle(id) {
     <span style="font-size:0.75rem;color:#555;margin-left:auto">${p.date}</span>
   `;
   document.getElementById('article-title').textContent = p.title;
-  document.getElementById('article-body').textContent  = p.body || p.excerpt;
+  document.getElementById('article-body').textContent  = p.body || p.excerpt || 'No content found';
   document.getElementById('article-rating').innerHTML  = renderStars(p.rating);
+  console.log('Title el:', document.getElementById('article-title'));
+  console.log('Body el:', document.getElementById('article-body'));
+  console.log('Setting body to:', p.body || p.excerpt);
   showView('article');
+  console.log('article-view display:', document.getElementById('article-view').style.display);
   window.scrollTo(0, 0);
 }
 
