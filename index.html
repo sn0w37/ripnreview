@@ -95,7 +95,8 @@
   .article-body { font-size: 0.95rem; color: #aaa; line-height: 1.85; white-space: pre-wrap; }
   .article-rating { display: flex; gap: 4px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #23232f; }
 
-  /* ADMIN LOGIN */
+  .view { display: none; }
+  .view.active { display: block; }
   #admin-login { display: none; max-width: 400px; margin: 80px auto; padding: 0 20px; }
   .login-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 14px; padding: 36px; text-align: center; }
   .login-card h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
@@ -164,7 +165,7 @@
 </div>
 
 <!-- HOME VIEW -->
-<div id="home-view">
+<div id="home-view" class="view active">
   <div id="page">
     <main>
       <div id="feed-header">
@@ -290,21 +291,19 @@ let adminUnlocked = false;
 
 // ── VIEWS ─────────────────────────────────────────────────────────────
 function showView(view) {
+  ['home-view','article-view','admin-login','admin-view'].forEach(id => {
+    document.getElementById(id).classList.remove('active');
+  });
   if (view === 'admin' && !adminUnlocked) {
-    document.getElementById('home-view').style.display    = 'none';
-    document.getElementById('article-view').style.display = 'none';
-    document.getElementById('admin-login').style.display  = '';
-    document.getElementById('admin-view').style.display   = 'none';
+    document.getElementById('admin-login').classList.add('active');
     document.getElementById('nav-home').classList.remove('active');
     document.getElementById('nav-admin').classList.add('active');
     currentView = 'admin-login';
     return;
   }
-  document.getElementById('home-view').style.display    = view === 'home'    ? '' : 'none';
-  document.getElementById('article-view').style.display = view === 'article' ? '' : 'none';
-  document.getElementById('admin-login').style.display  = 'none';
-  document.getElementById('admin-view').style.display   = view === 'admin'   ? '' : 'none';
-  document.getElementById('nav-home').classList.toggle('active',  view === 'home' || view === 'article');
+  const map = { home: 'home-view', article: 'article-view', admin: 'admin-view' };
+  document.getElementById(map[view]).classList.add('active');
+  document.getElementById('nav-home').classList.toggle('active', view === 'home' || view === 'article');
   document.getElementById('nav-admin').classList.toggle('active', view === 'admin');
   currentView = view;
   if (view === 'admin') renderAdminList();
