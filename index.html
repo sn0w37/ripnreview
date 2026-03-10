@@ -13,8 +13,7 @@
     background: #1a1a24; border-bottom: 1px solid #2a2a3a;
     padding: 10px 24px; display: flex; align-items: center; justify-content: space-between;
   }
-  #site-title { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; color: #fff; }
-  #site-title span { color: #a855f7; }
+  #site-title img { height: 48px; width: auto; display: block; }
   #top-bar nav a {
     color: #aaa; text-decoration: none; margin-left: 20px;
     font-size: 0.9rem; transition: color .2s; cursor: pointer;
@@ -151,7 +150,7 @@
 <body>
 
 <div id="top-bar">
-  <div id="site-title">Rip<span>Review</span></div>
+  <div id="site-title"><img src="ripnreview-logo.png" alt="Rip n Review"></div>
   <nav>
     <a onclick="showView('home')" id="nav-home" class="active">Home</a>
     <a onclick="showView('admin')" id="nav-admin">Admin</a>
@@ -479,7 +478,22 @@ function setFilter(f,el) {
 }
 function setBrand(name) { activeBrand=name; renderBrands(); renderFeed(); }
 
-// ── CONTENTFUL ────────────────────────────────────────────────────────
+// ── CONTENTFUL RICH TEXT RENDERER ────────────────────────────────────
+function renderRichText(doc) {
+  if (!doc || !doc.content) return '';
+  return doc.content.map(node => {
+    if (node.nodeType === 'paragraph')
+      return node.content.map(n => n.value || '').join('') + '\n\n';
+    if (node.nodeType === 'heading-1') return '# ' + node.content.map(n=>n.value||'').join('') + '\n\n';
+    if (node.nodeType === 'heading-2') return '## ' + node.content.map(n=>n.value||'').join('') + '\n\n';
+    if (node.nodeType === 'heading-3') return '### ' + node.content.map(n=>n.value||'').join('') + '\n\n';
+    if (node.nodeType === 'unordered-list')
+      return node.content.map(li => '• ' + li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n') + '\n\n';
+    if (node.nodeType === 'ordered-list')
+      return node.content.map((li,i) => `${i+1}. ` + li.content.map(p=>p.content.map(n=>n.value||'').join('')).join('')).join('\n') + '\n\n';
+    return '';
+  }).join('').trim();
+}
 const CF_SPACE  = 'v7m1m909hpus';
 const CF_TOKEN  = '4GX0xOdJYBvcgNTbfTnYmVGvy8LORxpfifKu3Z9qElI';
 const CF_URL    = `https://cdn.contentful.com/spaces/${CF_SPACE}/entries?content_type=reviewPost&order=-fields.date&access_token=${CF_TOKEN}`;
@@ -499,7 +513,7 @@ async function fetchContentfulPosts() {
         brandColor: f.brandColor || brand.color,
         title:      f.title      || '',
         excerpt:    f.excerpt    || '',
-        body:       f.body       || '',
+        body:       typeof f.body === 'object' ? renderRichText(f.body) : (f.body || ''),
         rating:     f.rating     || 0,
         date:       f.date ? new Date(f.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '',
         tag:        f.tag        || 'Post',
