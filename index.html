@@ -338,7 +338,7 @@ function checkPassword() {
 
 // ── ARTICLE ────────────────────────────────────────────────────────────
 function openArticle(id) {
-  const p = posts.find(x => x.id === id);
+  const p = posts.find(x => String(x.id) === String(id));
   if (!p) return;
   document.getElementById('article-meta').innerHTML = `
     <span class="brand-badge" style="background:${p.brandColor}22;color:${p.brandColor};border:1px solid ${p.brandColor}55">${p.brand}</span>
@@ -392,7 +392,7 @@ function renderFeed() {
       </div>
       <div class="card-footer">
         <div class="rating">${renderStars(p.rating)}</div>
-        <button class="read-more" onclick="openArticle(${p.id})">Read more →</button>
+        <button class="read-more" onclick="openArticle('${p.id}')">Read more →</button>
       </div>
     </div>`).join('');
 }
